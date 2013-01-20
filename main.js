@@ -54,6 +54,8 @@ function(fyre, Hub, ContentHtml, Mustache, $){
     		// Don't display them, they're attachments now
     		$filePickerAnchors.remove();
     		data.bodyHtml = outerHtml($html);
+    		// Change the display name
+    		data.author.displayName = 'UploaderDude';
     	}
     	return contentTemplate(data);
     }
