@@ -7,10 +7,6 @@
 // Load config, which tells RequireJS where dependencies are
 require(['./config'], function () {
 
-// Use the same Livefyre Auth Token for all uploads.
-// This is just a demo user.
-var userToken = 'eyJhbGciOiAiSFMyNTYiLCAidHlwIjogIkpXVCJ9.eyJkb21haW4iOiAibGFicy10NDAyLmZ5cmUuY28iLCAiZXhwaXJlcyI6IDEzNjY0OTE0NjkuNjU0NjU4LCAidXNlcl9pZCI6ICJ1c2VyXzAifQ.MSGGgu67OrS2C2ENro5NR6YVF5f7wJeoKuR3IzNqHZ4';
-
 // ## Display the Collection of Content
 // This is what the user will see
 
@@ -39,8 +35,15 @@ function(fyre, Hub, ContentHtml, Mustache, $){
             },
             el: document.getElementById("example-feed")
         });
+
+        // Use the same Livefyre Auth Token for all uploads.
+        // This is just a demo user.
+        var userToken = 'eyJhbGciOiAiSFMyNTYiLCAidHlwIjogIkpXVCJ9.eyJkb21haW4iOiAibGFicy10NDAyLmZ5cmUuY28iLCAiZXhwaXJlcyI6IDEzNjY0OTE0NjkuNjU0NjU4LCAidXNlcl9pZCI6ICJ1c2VyXzAifQ.MSGGgu67OrS2C2ENro5NR6YVF5f7wJeoKuR3IzNqHZ4';
+        // The JS SDK must be told what token to use
+        app._collection._sdkCollection.setUserToken(userToken);
     }
 
+    // ### Rendering picked files
     // StreamHub does not quite yet support attaching images
     // via API. It will soon, but until then, Filepicker links
     // will be submitted just as links, and this template will
@@ -123,26 +126,24 @@ function (filepicker, $) {
     }
     
     // ### Post the File into StreamHub
-
     // Posted Content will come down from the Collection's stream
     function postFile (fpFile) {
         if ( ! fpFile || ! fpFile.url ) {
             return console.log("There is no file to post");
         }
-        var fileUrl = fpFile.url,
-            jqxhr = $.post(postUrl, {
-                lftoken: userToken,
-                // The Content bodyHtml will just be a link
-                // to the picked file. We'll parse it out on render
-                body: fileUrl
-            });
-
-        jqxhr.success(function () {
+        
+        // Use the raw JS SDK to post Content to the Collection
+        app._collection._sdkCollection.postContent({
+            // The Content bodyHtml will just be a link
+            // to the picked file. We'll parse it out on render
+            bodyHtml: fpFile.url
+        }, onPostSuccess, onPostError);
+        function onPostSuccess () {
             console.log("Successful posting to StreamHub");
-        })
-        jqxhr.error(function () {
+        }
+        function onPostError () {
             console.log("Error posting to StreamHub");
-        })
+        }
     }
 });
 
