@@ -80,7 +80,7 @@ function (filepicker, $) {
 	// Use Filepicker.io to choose a file
 	function pickFile (cb) {
 		filepicker.pick(
-			{},
+			{mimetype: 'image/*'},
 			function filePickSuccess (fpFile) {
 				cb(fpFile);
 			},
