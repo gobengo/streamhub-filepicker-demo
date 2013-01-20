@@ -1,0 +1,12 @@
+{
+  "name": "Livefyre + Filepicker.io Demo",
+  "version": "0.0.0",
+  "main": [
+    "main.js"
+  ],
+  "dependencies": {
+    "jquery": "~1.7",
+    "requirejs": "~2.1.2",
+    "streamhub-backbone": "1.0.0"
+  }
+}

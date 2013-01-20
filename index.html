@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Livefyre StreamHub + Filepicker.io</title>
+    <script src="components/requirejs/require.js"
+            data-main="main"
+            type="text/javascript"></script>
+    <style>
+    body {
+        color: #222;
+        font: 14px sans-serif;
+        line-height: 1.25;
+    }
+    #container {
+        margin: 0 auto;
+        width: 900px;
+    }
+    .example {
+        width: 430px;
+        display: inline-block;
+        vertical-align: top;
+    }
+    #example-feed {
+        margin-top: 1em;
+    }
+    .upload-button {
+        background-color: #4d90fe;
+        border-radius: 2px;
+        color: white;
+        cursor: pointer;
+        display: block;
+        font-size: 2em;
+        padding: 5px;
+        text-align: center;
+        width: 100%;
+    }
+    .upload-button:hover {
+        background-color: #0072bb;
+    }
+    .hub-item {
+        background-color: white;
+        cursor: pointer;
+        padding: .5em;
+        margin-bottom: 0.25em;
+    }
+    .hub-item .hub-avatar img {
+        height: 1.2em;
+    }
+    </style>
+    <link rel="stylesheet" type="text/css" href="components/streamhub-backbone/main.css">
+</head>
+<body>
+<div id="container">
+  <h1>Livefyre StreamHub + Filepicker.io</h1>
+  <p>StreamHub hosts Collections of Content</p>
+  <p>StreamHub-Backbone helps you render them nicely</p>
+  <p>Filepicker.io is a great source of Content</p>
+  <p>Now you can use them all together. ☺</p>
+  <div id="example" class="example">
+    <a class="upload-button"><strong>Pick</strong> a <strong>File</strong></a>
+    <div id="example-feed"></div>
+  </div>
+</div>
+</body>
+</html>
